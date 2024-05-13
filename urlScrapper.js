@@ -6,9 +6,11 @@
 */
 
 const puppeteer = require('puppeteer');
+const fs = require('fs');
+
 const url = "https://www.prydwen.gg/star-rail/characters";
 
-async function scrape() {
+const main = async () => {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
     await page.goto(url);
@@ -22,9 +24,9 @@ async function scrape() {
         });
     });
 
-    console.log(charactersUrls);
-
     await browser.close();
+
+    return JSON.stringify(charactersUrls);
 };
 
-scrape();
+main();
