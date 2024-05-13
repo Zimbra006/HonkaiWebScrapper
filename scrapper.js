@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer');
 
-const name = "topaz"
+const name = "topaz";
 const url = "https://www.prydwen.gg/star-rail/characters/".concat('', name);
 
 async function scrapeStats(url){
@@ -25,6 +25,6 @@ async function scrapeStats(url){
     console.log({characterName, build});
 
     await browser.close();
-}
+};
 
-scrapeStats(url)
+scrapeStats(url);
