@@ -1,17 +1,24 @@
 const puppeteer = require('puppeteer');
+const charactersUrls = require('./charactersUrls.json');
 
-const name = "topaz";
-const url = "https://www.prydwen.gg/star-rail/characters/".concat('', name);
-
-async function scrapeStats(url){
+const main = async () => {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
-    await page.goto(url);
 
-    const characterName = await page.evaluate(() => {
-        const info = document.querySelector('div.left-info');
-        return info.querySelector('strong').innerText;
-    });
+    for(let index = 0; index < 3; index++){
+        let element = charactersUrls[index];
+        let name = element.name;
+        let build = await scrapeStats(page, element.url);
+        
+        console.log({name, build});
+    }
+
+    await browser.close();
+};
+
+// Function to scrape the stats of a single character
+async function scrapeStats(page, url) {
+    await page.goto(url);
 
     const build = await page.evaluate(() => {
         const buildStats = document.querySelector('div.build-stats');
@@ -22,9 +29,7 @@ async function scrapeStats(url){
         });
     });
 
-    console.log({characterName, build});
-
-    await browser.close();
+    return build;
 };
 
-scrapeStats(url);
+main();
