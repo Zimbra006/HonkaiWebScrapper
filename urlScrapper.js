@@ -3,6 +3,7 @@
     This file is used to scrape the character list and return a .json 
     listing the urls to each character page
 
+    Supposed to be run everytime the game is updated!
 */
 
 const puppeteer = require('puppeteer');
