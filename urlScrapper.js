@@ -24,9 +24,17 @@ const main = async () => {
         });
     });
 
+    const jsonContent = JSON.stringify(charactersUrls, null, 2);
+    
     await browser.close();
 
-    return JSON.stringify(charactersUrls);
+    fs.writeFile("./charactersUrls.json", jsonContent, 'utf8', function (err) {
+        if (err) {
+            return console.log(err);
+        }
+    
+        console.log("The file was saved!");
+    }); 
 };
 
 main();
