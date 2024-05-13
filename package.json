@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Guilherme Amazonas Böhme",
+  "license": "MIT",
   "dependencies": {
     "puppeteer": "^22.8.1"
   }
